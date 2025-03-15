@@ -1,15 +1,29 @@
+@font-face {
+  font-family: 'LongCang';
+  src: url('assets/LongCang.ttf') format('truetype');
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #000000;
+  margin: 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #000000;
 }
 
 #app {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rotating-text {
+  transition: transform 3s ease;
+  font-family: 'LongCang', Arial, Helvetica, sans-serif;
+  font-size: 200px;
+  color: #ffffff;
+  text-align: center;
+  transform: rotateY(30deg);
 }
