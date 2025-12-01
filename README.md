@@ -1,6 +1,6 @@
-# Phaser Bun TypeScript Template
+# 斗战西游 - Journey to the West Game
 
-This is a Phaser 3 project template that uses Vite and Bun for bundling. It supports hot-reloading for quick development workflow, includes TypeScript support and scripts to generate production-ready builds.
+这是一个基于Phaser 3的西游记主题游戏演示，使用Vite和Bun进行构建。游戏支持热重载开发，包含TypeScript支持和生产环境构建脚本。
 
 ### Versions
 
@@ -9,6 +9,13 @@ This template has been updated for:
 - [Phaser 3.88.2](https://github.com/phaserjs/phaser)
 - [Vite 5.2.11](https://github.com/vitejs/vite)
 - [TypeScript 5.4.5](https://github.com/microsoft/TypeScript)
+
+## 游戏特色
+
+- 🎮 **西游记主题**: 以孙悟空大闹天宫为背景的有趣游戏
+- 🎯 **简单玩法**: 移动鼠标控制孙悟空，点击消灭天兵天将
+- 🏆 **得分系统**: 消灭敌人获得分数，达到100分即可通关
+- 🎨 **精美画面**: 金色主题配合传统中文字体，营造古典氛围
 
 ![screenshot](screenshot.png)
 
@@ -142,7 +149,19 @@ We love to see what developers like you create with Phaser! It really motivates 
 **Code:** 2000+ [Examples](https://labs.phaser.io)<br />
 **Read:** The [Phaser World](https://phaser.io/community/newsletter) Newsletter<br />
 
+## 更新日志
+
+### v0.1.0 (2025-12-01)
+- 🎮 添加了完整的游戏玩法机制
+- 🎨 优化了视觉界面和样式
+- 🏆 实现了得分系统和通关机制
+- 🐛 修复了各种用户体验问题
+- 📚 更新了项目文档
+
+---
+
 Created by [Phaser Studio](mailto:support@phaser.io). Powered by coffee, anime, pixels and love.
+Modified with Journey to the West theme.
 
 The Phaser logo and characters are &copy; 2011 - 2024 Phaser Studio Inc.
 

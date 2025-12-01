@@ -7,7 +7,8 @@ body {
   margin: 0;
   padding: 0;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #000000;
+  background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+  overflow: hidden;
 }
 
 #app {
@@ -17,13 +18,42 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
 }
 
 .rotating-text {
-  transition: transform 3s ease;
+  transition: all 3s ease;
   font-family: 'LongCang', Arial, Helvetica, sans-serif;
   font-size: 200px;
-  color: #ffffff;
+  background: linear-gradient(45deg, #FFD700, #FFA500, #FF8C00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-align: center;
   transform: rotateY(30deg);
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.7));
+  }
+  to {
+    filter: drop-shadow(0 0 30px rgba(255, 165, 0, 0.9));
+  }
+}
+
+.rotating-text:hover {
+  transform: rotateY(0deg) scale(1.1);
+  background: linear-gradient(45deg, #FFA500, #FF8C00, #FF6347);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+canvas {
+  border: 3px solid #FFD700;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
 }

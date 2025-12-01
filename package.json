@@ -1,7 +1,7 @@
 {
     "name": "journey-to-west",
-    "description": "A demo game of journey to west",
-    "version": "0.0.1",
+    "description": "A demo game of journey to west - 孙悟空大闹天宫",
+    "version": "0.1.0",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/phaserjs/template-bun.git"
