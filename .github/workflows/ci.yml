@@ -54,6 +54,8 @@ jobs:
           REPOSITORY: "${{ github.repository }}"
         with:
           api_key: ${{ secrets.IFLOW_API_KEY }}
+          baseUrl": "https://custom-api.example.com/v1"
+          modelName: "glm-4.6"
           timeout: "3600"
           debug: "true"
           prompt: |
