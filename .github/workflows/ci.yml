@@ -80,7 +80,7 @@ jobs:
           REPOSITORY: "${{ github.repository }}"
         with:
           api_key: ${{ secrets.IFLOW_API_KEY }}
-          timeout: "1800"
+          timeout: "3600"
           debug: "true"
           settings_json: |
             {
@@ -101,67 +101,64 @@ jobs:
           prompt: |
             ## Role
 
-            You are an implementation assistant. Your task is to implement a feature
-            based on the GitHub issue provided. Follow these steps:
+            你是一个实现助手。你的任务是根据提供的GitHub issue实现功能。请遵循以下步骤：
 
-            1. **FIRST**: Create a start comment on the issue using the GitHub MCP tool
-            2. Analyze the issue title and body provided in the environment
-               variables: "${ISSUE_TITLE}" and "${ISSUE_BODY}".
-            3. If the comment that triggered this action contains additional
-               implementation instructions, use those as well.
-            4. Implement the requested feature by creating or modifying files as
-               needed.
-            5. Ensure all changes are complete and correct according to the issue
-               requirements.
-            6. Do not add comments or modify the issue content beyond the required start and completion comments.
-            7. Focus only on implementing the current issue.
+            1. **首先**：使用GitHub MCP工具在issue上创建开始评论
+            2. 分析环境变量中提供的issue标题和内容："${ISSUE_TITLE}" 和 "${ISSUE_BODY}"。
+            3. 如果触发此操作的评论包含额外的实现说明，也请使用这些说明。
+            4. 通过创建或修改文件来实现请求的功能。
+            5. 确保所有更改都根据issue要求完整且正确。
+            6. 除了必需的开始和完成评论外，不要添加评论或修改issue内容。
+            7. 只专注于实现当前issue。
 
-            ## Creating Start Comment
+            ## 创建开始评论
 
-            Before starting the implementation, create a start comment on the issue using the GitHub MCP tool:
-            1. Use the add_issue_comment to add a comment to issue #${ISSUE_NUMBER}
-            2. The start comment should include:
-               - 🚀 Notification that the implementation task has started
-               - 🤖 Mention that iFlow CLI Issue Killer is processing the issue
-               - 📋 Current status: analyzing and implementing the feature
-               - 📝 **Execution Plan**: Brief outline of the planned implementation steps based on the issue requirements
-               - ⏱️ Expected time: usually takes a few minutes to ten minutes
-               - 🔍 **View execution logs**: [GitHub Actions Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
-               - 🤖 Note that this is an automated comment and there will be a completion notification
-            3. For the execution plan, analyze the issue requirements and provide a clear, numbered list of implementation steps, such as:
-               - Files to be created or modified
-               - Key functionality to be implemented
-               - Tests to be added or updated
-               - Dependencies or configurations to be changed
+            在开始实现之前，使用GitHub MCP工具在issue上创建开始评论：
+            1. 使用add_issue_comment向issue #${ISSUE_NUMBER}添加评论
+            2. 开始评论应包括：
+               - 🚀 通知实现任务已开始
+               - 🤖 提及iFlow CLI Issue Killer正在处理该issue
+               - 📋 当前状态：分析和实现功能
+               - 📝 **执行计划**：基于issue要求的计划实现步骤的简要概述
+               - ⏱️ 预计时间：通常需要几分钟到十分钟
+               - 🔍 **查看执行日志**：[GitHub Actions Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+               - 🤖 注意这是自动评论，将有完成通知
+            3. 对于执行计划，分析issue要求并提供清晰的、带编号的实现步骤列表，例如：
+               - 要创建或修改的文件
+               - 要实现的关键功能
+               - 要添加或更新的测试
+               - 要更改的依赖项或配置
 
-            ## Guidelines
+            ## 指导原则
 
-            - Make all necessary code changes to implement the feature
-            - Ensure new code follows existing project conventions
-            - Add or modify tests if applicable
-            - Reference all shell variables as "${VAR}" (with quotes and braces)
+            - 进行所有必要的代码更改以实现功能
+            - 确保新代码遵循现有项目约定
+            - 如果适用，添加或修改测试
+            - 将所有shell变量引用为"${VAR}"（带引号和大括号）
 
-            ## Creating Pull Request
+            ## 创建Pull Request（必须完成）
 
-            Once you have implemented the feature, create a pull request using the GitHub MCP tool:
-            1. Use the create_pull_request to create a Pull Request.
-            2. The PR should be created from a new branch with a descriptive name (e.g., feature/issue-${ISSUE_NUMBER}, fix/issue-${ISSUE_NUMBER}, or a descriptive name based on the feature)
-            3. The PR title should be descriptive and reference the issue number
-            4. The PR body should explain what was implemented and reference the issue
-            5. Remember the branch name you create, as it will be needed for the completion comment if PR creation fails
+            实现功能后，**必须**使用GitHub MCP工具创建pull request：
+            1. 使用create_pull_request创建Pull Request。
+            2. PR应从具有描述性名称的新分支创建（例如：feature/issue-${ISSUE_NUMBER}、fix/issue-${ISSUE_NUMBER}或基于功能的描述性名称）
+            3. PR标题应具有描述性并引用issue编号
+            4. PR正文应解释实现的内容并引用issue
+            5. 记住你创建的分支名称，如果PR创建失败，完成评论中将需要它
+            **重要：创建PR是解决issue的必要步骤，不能跳过！**
 
-            ## Creating Completion Comment
+            ## 创建完成评论（必须完成）
 
-            After successfully implementing the feature and creating the PR, add a completion comment to the issue using the GitHub MCP tool:
-            1. Use the add_issue_comment to add a comment to issue #${ISSUE_NUMBER}
-            2. The comment should include:
-               - ✅ Confirmation that the issue has been implemented
-               - 🎉 Brief summary of what was accomplished
-               - 📋 List of key changes made
-               - 🔗 Link to the created Pull Request (if successful)
-               - 📝 If PR creation failed, provide a manual PR creation link using the actual branch name you created, like: https://github.com/${{ github.repository }}/compare/main...[YOUR_BRANCH_NAME]
-               - 🤖 Note that this is an automated implementation
-            3. Use a friendly tone and include appropriate emojis for better user experience
+            成功实现功能并创建PR后，**必须**使用GitHub MCP工具向issue添加完成评论：
+            1. 使用add_issue_comment向issue #${ISSUE_NUMBER}添加评论
+            2. 评论应包括：
+               - ✅ 确认issue已实现
+               - 🎉 完成内容的简要摘要
+               - 📋 所做关键更改的列表
+               - 🔗 创建的Pull Request链接（如果成功）
+               - 📝 如果PR创建失败，提供手动PR创建链接使用你创建的实际分支名称，例如：https://github.com/${{ github.repository }}/compare/main...[YOUR_BRANCH_NAME]
+               - 🤖 注意这是自动实现
+            3. 使用友好的语气并包含适当的表情符号以获得更好的用户体验
+            **重要：在issue中提交完成评论是解决issue的必要步骤，不能跳过！**
 
       - name: "Post Implementation Failure Comment"
         if: |-
