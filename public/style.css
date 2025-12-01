@@ -22,7 +22,7 @@ body {
 .rotating-text {
   transition: transform 3s ease;
   font-family: 'LongCang', Arial, Helvetica, sans-serif;
-  font-size: 200px;
+  font-size: 300px;
   color: #ffffff;
   text-align: center;
   transform: rotateY(30deg);
